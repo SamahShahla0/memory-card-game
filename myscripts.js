@@ -34,7 +34,7 @@ function flipCard() {
 }
 
 function checkForMatch() {
-    if (firstCard.dataset.framework === secondCard.dataset.framework) {
+    if (firstCard.classList === secondCard.classList) {
       console.log('found match');
       firstCard.remove();
       secondCard.remove();
