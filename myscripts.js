@@ -1,54 +1,59 @@
 const cards = document.querySelectorAll('.memory-card');
-//setting a flag value for this card div to false, the flag variable indicates if its flipped or not
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard ;
-let secondCard ;
+const memorygame = document.getElementsByClassName('memory-game');
+console.log(memorygame);
+
+let firstCard;
+let secondCard;
+let boardLocked = false;
+let isFlipped = false;
+
 
 function flipCard() {
-    if (lockBoard) return;
-    if (this === firstCard) return;
-    //adding the flip class to the card
-    this.classList.add('flip');
-    //checking if the card is not flipped 
-    if (!hasFlippedCard) {
-        //changing the value of the flag 
-        hasFlippedCard = true;
-        //assigning this card to firstcard variable
-        firstCard = this;
-        return;
-   }
+  if (this == firstCard){
+    return;
+  }
+  if (boardLocked){
+    return;
+  }
 
-   secondCard = this;
+  this.classList.add('flip');
+  console.log('flipping');
+  
+  if (!isFlipped){
+    isFlipped = true;
+    firstCard = this;
+    console.log('assigning fcard');
+    return;
+  }
 
-   checkForMatch();
+  secondCard = this;
+  boardLocked = false;
+  console.log('assigning scard');
+  checkForMatch();
+
 }
+
 function checkForMatch() {
     if (firstCard.dataset.framework === secondCard.dataset.framework) {
-      disableCards();
-      return;
+      console.log('found match');
+      firstCard.remove();
+      secondCard.remove();
     }
     unflipCards();
 }
 
-function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-    if (this === firstCard) return;
-}
-
 function unflipCards() {
-    lockBoard = true;
+    boardLocked = false;
     setTimeout(() => {
       firstCard.classList.remove('flip');
       secondCard.classList.remove('flip');
       resetBoard();
-    }, 1000);
+    }, 1500);
 }
 
 function resetBoard() {
-    hasFlippedCard, lockBoard = false, false;
-    firstCard, secondCard = null, null;
+  isFlipped, boardLocked = false, false;
+  firstCard, secondCard = null, null;
 }
 
 (function shuffle() {
