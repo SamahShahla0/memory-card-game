@@ -7,31 +7,66 @@
 }
 body{
     height: 100vh;
-    display: flex;
     background: #78dff9;
 }
+h1{
+    font-size: 64px;
+    margin-left: 150px;
+    margin-bottom: 50px;
+}
 
+.game-div{
+    width: 80%;
+    margin-left: 150px;
+}
 .memory-game {
-    display: flex;
-    flex-wrap: wrap;
-    width: 640px;
-    height: 640px;
-    margin: auto;
+    display: grid;
+    text-align: center;
+    grid-template-areas:
+        "PHP-js-card1"
+        "PHP-js-card2"
+        "java-js-card2"
+        "java-js-card2"
+        "python-js-card1"
+        "python-js-card2";
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+    grid-gap: 50px;
+    align-items: start;
     /*This property sets how far in the z plane the object is from the user*/
     perspective: 1000px;
 }
 
 .memory-card {
-    width: calc(25% - 10px);
-    height: calc(33.333% - 10px);
-    margin: 5px;
-    position: relative;
+    display: grid;
+    row-gap: 20px;
+    min-height: 250px;
+    padding: 20px 30px;
+    grid-template-rows: 40% auto 40%;
     box-shadow: 1px 1px 1px rgba(0,0,0,.3);
     transform: scale(1);
     /*to position the cards in the 3D space created in the parent*/
     transform-style: preserve-3d;
     transition: transform .5s;
 }
+
+.memory-game > * {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+  
+
+
+
+
+
+
+
+
+
+
+
 
 .memory-card:active {
     transform: scale(0.97);
