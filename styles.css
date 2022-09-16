@@ -4,7 +4,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
+body{
+    height: 100vh;
+    display: flex;
+    background: #78dff9;
+}
   
 h1 {
 font-size: 56px;
@@ -30,18 +35,34 @@ h6 {
 font-size: 18px;
 }
 
-a {
-text-decoration: none;
-color: inherit;
+.memory-game {
+    display: flex;
+    flex-wrap: wrap;
+    width: 640px;
+    height: 640px;
+    margin: auto;
 }
 
-ul {
-list-style: none;
+.memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    transform: scale(1);
 }
 
-picture > source,
-picture > img {
-object-fit: cover;
-width: 100%;
-height: 100%;
+.memory-card:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: #4c5052;
 }
